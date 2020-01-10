@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-const { Post, validate, validateUpdate } = require("../models/posts.model");
 const { Book, validateBook } = require("../models/book.model");
-const { Comment, validateComment } = require("../models/comment.model");
 const express = require("express");
 const router = express.Router();
 
@@ -15,7 +13,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
   const posts = req.body;
-  const { error } = validate(req.body);
+  const { error } = validateBook(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   let post = await Book.findOne({ title: posts.title });
@@ -36,7 +34,6 @@ router.delete("/", async (req, res) => {
 
   if (!post)
     return res.status(404).send("The book with the given ID was not found.");
-
   res.send(post);
 });
 
