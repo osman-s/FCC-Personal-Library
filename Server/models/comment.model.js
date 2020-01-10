@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { bookSchema } = require("./book.model");
 
 const CommentSchema = new mongoose.Schema({
-  customer: {
+  book: {
     type: bookSchema,
     required: true
   },

@@ -8,9 +8,9 @@ const bookSchema = new mongoose.Schema({
   }
 });
 
-const Book = mongoose.model("Book", bookPostSchema);
+const Book = mongoose.model("Book", bookSchema);
 
-function validateBookPost(book) {
+function validateBook(book) {
   const schema = {
     title: Joi.string().required()
   };
