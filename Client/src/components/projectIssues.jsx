@@ -1,49 +1,48 @@
 import React, { Component } from "react";
-import { getPosts, issueUpdate, issueDelete } from "../services/issueService";
 import PostBookForm from "./postBookForm";
 
 class ProjectIssues extends Component {
   state = {
     issues: []
   };
-  async componentDidMount() {
-    const { data: issues } = await getPosts();
-    this.setState({ issues });
-    console.log(this.state);
-  }
+  // async componentDidMount() {
+  //   const { data: issues } = await getPosts();
+  //   this.setState({ issues });
+  //   console.log(this.state);
+  // }
 
-  handleClose = async _id => {
-    const closePost = {
-      _id: _id,
-      state: "closed"
-    };
-    try {
-      const response = await issueUpdate(closePost);
-      window.location = "/projectissues";
-    } catch (ex) {
-      if (ex.response && ex.response.status === 400) {
-        const errors = { ...this.state.errors };
-        errors.username = ex.response.data;
-        this.setState({ errors });
-      }
-    }
-  };
-  handleDelete = async _id => {
-    const deletePost = {
-      _id: _id
-    };
-    console.log(deletePost);
-    try {
-      const response = await issueDelete(deletePost);
-      window.location = "/projectissues";
-    } catch (ex) {
-      if (ex.response && ex.response.status === 400) {
-        const errors = { ...this.state.errors };
-        errors.username = ex.response.data;
-        this.setState({ errors });
-      }
-    }
-  };
+  // handleClose = async _id => {
+  //   const closePost = {
+  //     _id: _id,
+  //     state: "closed"
+  //   };
+  //   try {
+  //     const response = await issueUpdate(closePost);
+  //     window.location = "/projectissues";
+  //   } catch (ex) {
+  //     if (ex.response && ex.response.status === 400) {
+  //       const errors = { ...this.state.errors };
+  //       errors.username = ex.response.data;
+  //       this.setState({ errors });
+  //     }
+  //   }
+  // };
+  // handleDelete = async _id => {
+  //   const deletePost = {
+  //     _id: _id
+  //   };
+  //   console.log(deletePost);
+  //   try {
+  //     const response = await issueDelete(deletePost);
+  //     window.location = "/projectissues";
+  //   } catch (ex) {
+  //     if (ex.response && ex.response.status === 400) {
+  //       const errors = { ...this.state.errors };
+  //       errors.username = ex.response.data;
+  //       this.setState({ errors });
+  //     }
+  //   }
+  // };
 
   render() {
     const posts = this.state.issues;

@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { issueUpdate } from "../services/issueService";
+import { issueUpdate } from "../services/bookService";
 
 class IssueUpdateForm extends Form {
   state = {

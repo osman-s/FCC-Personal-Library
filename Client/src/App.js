@@ -20,7 +20,7 @@ class App extends Component {
         <NavBar user={user} />
         <main className="">
           <Switch>
-            <Route path="/projectissues" component={ProjectIssues} />
+            {/* <Route path="/projectissues" component={ProjectIssues} /> */}
             <Route
               path="/home"
               render={props => (

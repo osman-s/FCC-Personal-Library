@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { issuePost } from "../services/issueService";
+import { bookComment } from "../services/bookService";
 
 class PostCommentForm extends Form {
   state = {
@@ -21,7 +21,7 @@ class PostCommentForm extends Form {
   doSubmit = async () => {
     console.log(this.state.data);
     try {
-      const response = await issuePost(this.state.data);
+      const response = await bookComment(this.state.data);
       window.location = "/projectissues";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
