@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import IssuePostForm from "./issuePostForm";
 import { getPosts, issueUpdate, issueDelete } from "../services/issueService";
+import PostBookForm from "./postBookForm";
 
 class ProjectIssues extends Component {
   state = {
@@ -51,7 +51,7 @@ class ProjectIssues extends Component {
       <div className="forms-c">
         <div className="padder">
           <h1 className=""></h1>
-        <IssuePostForm/>
+        <PostBookForm/>
         {posts.map(post => (
           <div className="projbox" key={post._id}>
             <div className="project-issues">

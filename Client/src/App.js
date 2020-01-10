@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import IssueTracker from "./components/issueTracker";
+import Home from "./components/home";
 import NotFound from "./components/notFound";
 import NavBar from "./components/navBar";
 import ProjectIssues from "./components/projectIssues";
@@ -22,13 +22,13 @@ class App extends Component {
           <Switch>
             <Route path="/projectissues" component={ProjectIssues} />
             <Route
-              path="/issuetracker"
+              path="/home"
               render={props => (
-                <IssueTracker {...props} user={this.state.user} />
+                <Home {...props} user={this.state.user} />
               )}
             />
             <Route path="/not-found" component={NotFound} />
-            <Redirect from="/" exact to="/issuetracker" />
+            <Redirect from="/" exact to="/home" />
             <Redirect to="/not-found" />
           </Switch>
         </main>

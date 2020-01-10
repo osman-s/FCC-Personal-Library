@@ -30,8 +30,8 @@
     transform: rotate(360deg);
   }
 }
-.bug:hover > .bug2 {
-  color: rgb(69, 235, 3);
+.bookss:hover > .fa-book {
+  color: rgb(3, 181, 235);
 }
 .checks {
   padding: 10px;

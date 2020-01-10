@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import IssuePostForm from "./issuePostForm";
 import IssueUpdateForm from "./issueUpdateForm";
 import IssueDeleteForm from "./issueDeleteForm";
+import PostBookForm from "./postBookForm";
+import PostCommentForm from "./postCommentForm";
 
 
-class IssueTracker extends Component {
+class Home extends Component {
   state = {
     movies: []
   };
@@ -16,12 +17,12 @@ class IssueTracker extends Component {
     return (
       <div>
         <h1></h1>
-        <IssuePostForm />
-        <IssueUpdateForm />
+        <PostBookForm />
+        <PostCommentForm />
         <IssueDeleteForm />
       </div>
     );
   }
 }
 
-export default IssueTracker;
+export default Home;

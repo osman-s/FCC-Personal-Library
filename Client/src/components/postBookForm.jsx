@@ -1,0 +1,48 @@
+import React from "react";
+import Joi from "joi-browser";
+import Form from "./common/form";
+import { issuePost } from "../services/issueService";
+
+class PostBookForm extends Form {
+  state = {
+    data: { title: "" },
+    errors: {}
+  };
+
+  schema = {
+    title: Joi.string()
+      .required()
+      .label("Title")
+  };
+
+  doSubmit = async () => {
+    console.log(this.state.data);
+    try {
+      const response = await issuePost(this.state.data);
+      window.location = "/projectissues";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
+    }
+  };
+
+  render() {
+    return (
+      <div className="forms-c">
+        <div>
+         <h1>Post Book:</h1>
+        <form onSubmit={this.handleSubmit} className="widther">
+          {this.renderInput("title", "Title:", "")}
+          {this.renderButton("Submit")}
+        </form> 
+        </div>
+        
+      </div>
+    );
+  }
+}
+
+export default PostBookForm;
