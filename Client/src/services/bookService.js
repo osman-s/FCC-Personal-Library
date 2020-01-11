@@ -16,7 +16,6 @@ export function bookComment({ _id, comment }) {
 }
 
 export function bookDelete(_id) {
-  console.log(_id);
   return http.delete(apiEndpoint, {
     data: { _id: _id }
   });

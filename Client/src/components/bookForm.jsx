@@ -16,9 +16,8 @@ class BookForm extends Form {
   };
 
   doSubmit = async () => {
-    console.log(this.state.data);
     try {
-      const response = await bookPost(this.state.data);
+      await bookPost(this.state.data);
       this.props.refresh();
       // window.location = "/";
     } catch (ex) {

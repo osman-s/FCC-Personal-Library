@@ -15,14 +15,12 @@ class CurrentCommentForm extends Form {
   };
 
   doSubmit = async () => {
-    console.log(this.state.data);
     var currentComment = {
       _id: this.props._id,
       comment: this.state.data.comment
     };
-    console.log(currentComment);
     try {
-      const response = await bookComment(currentComment);
+      await bookComment(currentComment);
       this.props.refresh();
       //   window.location = "/";
     } catch (ex) {
@@ -35,7 +33,7 @@ class CurrentCommentForm extends Form {
   };
   handleDelete = async () => {
     try {
-      const response = await bookDelete(this.props._id);
+      await bookDelete(this.props._id);
       this.props.refresh();
     //   window.location = "/";
     } catch (ex) {

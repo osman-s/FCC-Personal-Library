@@ -18,9 +18,8 @@ class CommentForm extends Form {
   };
 
   doSubmit = async () => {
-    console.log(this.state.data);
     try {
-      const response = await bookComment(this.state.data);
+      await bookComment(this.state.data);
       this.props.refresh();
     //   window.location = "/";
     } catch (ex) {

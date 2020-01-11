@@ -16,23 +16,19 @@ class Home extends Component {
     const { data: books } = await getBooks();
     const { data: comments } = await getComments();
     this.setState({ books, comments });
-    console.log(this.state);
   }
-  // async componentDidUpdate(prevProps, prevState) {
-  //   const { data: books } = await getBooks();
-  //   if (this.state.books !== books) {
-  //     console.log("hello");
-  //     this.setState({ books });
-  //   }
-  // }
 
   refreshBooks = async () => {
     const { data: books } = await getBooks();
     this.setState({ books });
   };
   refreshComments = async () => {
-    const { data: books } = await getBooks();
-    await this.setState({ books });
+    const { data: comments } = await getComments();
+    await this.setState({ comments });
+  };
+  refreshCurrentComments = async bookId => {
+    await this.refreshComments();
+    await this.handleBook(bookId);
   };
   handleBook = async bookId => {
     var currentBook = this.state.books.filter(book => {
@@ -64,7 +60,7 @@ class Home extends Component {
                 </div>
               ))}
               <CurrentCommentForm
-                refresh={this.refreshComments}
+                refresh={() => this.refreshCurrentComments(currentBook[0]._id)}
                 _id={currentBook[0]._id}
               />
             </div>
