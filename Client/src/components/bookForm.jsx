@@ -3,7 +3,7 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { bookPost } from "../services/bookService";
 
-class PostBookForm extends Form {
+class BookForm extends Form {
   state = {
     data: { title: "" },
     errors: {}
@@ -46,4 +46,4 @@ class PostBookForm extends Form {
   }
 }
 
-export default PostBookForm;
+export default BookForm;

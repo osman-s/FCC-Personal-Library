@@ -3,7 +3,7 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { bookComment } from "../services/bookService";
 
-class PostCommentForm extends Form {
+class CommentForm extends Form {
   state = {
     data: { _id: "", comment: "" },
     errors: {}
@@ -12,10 +12,9 @@ class PostCommentForm extends Form {
   schema = {
     _id: Joi.string()
       .required()
-      .label("Project Id"),
+      .label("BookId"),
     comment: Joi.string()
-      .allow("")
-      .label("Title")
+      .label("Comment")
   };
 
   doSubmit = async () => {
@@ -49,4 +48,4 @@ class PostCommentForm extends Form {
   }
 }
 
-export default PostCommentForm;
+export default CommentForm;

@@ -9,17 +9,7 @@ const NavBar = ({ user }) => {
           <i className="fas fa-book"></i> Personal Library
         </div>
       </Link>
-      <div className="" id="navbarNavAltMarkup">
-      {/* <div className="collapse navbar-collapse" id="navbarNavAltMarkup"> */}
-        <div className="navbar-nav">
-          <NavLink className="nav-item nav-link" to="/home">
-            Home
-          </NavLink>
-          <NavLink className="nav-item nav-link" to="/projectissues">
-            Project Issues
-          </NavLink>
-        </div>
-      </div>
+      <div className="" id="navbarNavAltMarkup"></div>
     </nav>
   );
 };

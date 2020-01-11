@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import PostBookForm from "./postBookForm";
-import PostCommentForm from "./postCommentForm";
+import BookForm from "./bookForm";
+import CommentForm from "./commentForm";
 import { getBooks, getComments } from "../services/bookService";
+import CurrentCommentForm from "./currentCommentForm";
 
 class Home extends Component {
   state = {
@@ -35,48 +36,13 @@ class Home extends Component {
   };
   handleBook = async bookId => {
     var currentBook = this.state.books.filter(book => {
-      return book._id == bookId;
+      return book._id === bookId;
     });
     var currentComments = this.state.comments.filter(comment => {
-      return comment.book._id == bookId;
+      return comment.book._id === bookId;
     });
     await this.setState({ currentBook, currentComments });
-    // console.log(this.state.currentBook, this.state.currentComments);
-    console.log(this.state.currentComments);
   };
-
-  // handleClose = async _id => {
-  //   const closePost = {
-  //     _id: _id,
-  //     state: "closed"
-  //   };
-  //   try {
-  //     const response = await issueUpdate(closePost);
-  //     window.location = "/projectissues";
-  //   } catch (ex) {
-  //     if (ex.response && ex.response.status === 400) {
-  //       const errors = { ...this.state.errors };
-  //       errors.username = ex.response.data;
-  //       this.setState({ errors });
-  //     }
-  //   }
-  // };
-  // handleDelete = async _id => {
-  //   const deletePost = {
-  //     _id: _id
-  //   };
-  //   console.log(deletePost);
-  //   try {
-  //     const response = await issueDelete(deletePost);
-  //     window.location = "/projectissues";
-  //   } catch (ex) {
-  //     if (ex.response && ex.response.status === 400) {
-  //       const errors = { ...this.state.errors };
-  //       errors.username = ex.response.data;
-  //       this.setState({ errors });
-  //     }
-  //   }
-  // };
 
   render() {
     const { books, currentBook, currentComments } = this.state;
@@ -84,8 +50,26 @@ class Home extends Component {
     return (
       <div>
         <h1></h1>
-        <PostBookForm refresh={this.refreshBooks} />
-        <PostCommentForm refresh={this.refreshComments} />
+        <BookForm refresh={this.refreshBooks} />
+        <CommentForm refresh={this.refreshComments} />
+        <div className="right-column book-outer mt-2">
+          {currentBook && (
+            <div className="cb-border">
+              <div className="book-title">{currentBook[0].title}</div>
+              <div>BookId: {currentBook[0]._id}</div>
+              {!currentComments.length && <div>No comments</div>}
+              {currentComments.map((comment, index) => (
+                <div key={comment._id}>
+                  {index + 1}. {comment.comment}
+                </div>
+              ))}
+              <CurrentCommentForm
+                refresh={this.refreshComments}
+                _id={currentBook[0]._id}
+              />
+            </div>
+          )}
+        </div>
         <div className="column-container">
           <div className="book-left-column">
             {books.map(book => (
@@ -99,7 +83,7 @@ class Home extends Component {
                   <div>
                     {
                       this.state.comments.filter(comment => {
-                        return comment.book._id == book._id;
+                        return comment.book._id === book._id;
                       }).length
                     }{" "}
                     comments
@@ -107,18 +91,6 @@ class Home extends Component {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="right-column">
-            {currentBook && (
-              <div>
-                <div className="book-title">{currentBook[0].title}</div>
-                <div>BookId: {currentBook[0]._id}</div>
-                {!currentComments.length && <div>No comments</div>}
-                {currentComments.map((comment, index) => (
-                  <div>{index + 1}. {comment.comment}</div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>
