@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const comment = await Comment.find()
     .select("-__v")
-    .sort("bookId");
+    // .sort("bookId");
   res.send(comment);
 });
 

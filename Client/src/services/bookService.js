@@ -9,8 +9,8 @@ export function bookPost({ title }) {
   });
 }
 export function bookComment({ _id, comment }) {
-  return http.post(apiEndpoint, {
-    _id: _id,
+  return http.post(apiEndpoint + "comments", {
+    bookId: _id,
     comment: comment
   });
 }
@@ -23,4 +23,7 @@ export function issueDelete({ _id }) {
 }
 export function getBooks() {
   return http.get(apiEndpoint);
+}
+export function getComments() {
+  return http.get(apiEndpoint + "comments");
 }

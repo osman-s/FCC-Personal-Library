@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import PostBookForm from "./postBookForm";
+import { getBooks } from "../services/bookService";
 
 class ProjectIssues extends Component {
   state = {
-    issues: []
+    books: [],
+    currentBook: []
   };
-  // async componentDidMount() {
-  //   const { data: issues } = await getPosts();
-  //   this.setState({ issues });
-  //   console.log(this.state);
-  // }
+
+  async componentDidMount() {
+    const { data: books } = await getBooks();
+    this.setState({ books });
+    console.log(this.state);
+  }
 
   // handleClose = async _id => {
   //   const closePost = {

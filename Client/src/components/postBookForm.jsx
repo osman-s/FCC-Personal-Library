@@ -19,7 +19,8 @@ class PostBookForm extends Form {
     console.log(this.state.data);
     try {
       const response = await bookPost(this.state.data);
-      window.location = "/projectissues";
+      this.props.refresh();
+      // window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
