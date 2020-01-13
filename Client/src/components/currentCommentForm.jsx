@@ -22,6 +22,7 @@ class CurrentCommentForm extends Form {
     try {
       await bookComment(currentComment);
       this.props.refresh();
+      this.setState({ data: { comment: "" }})
       //   window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
